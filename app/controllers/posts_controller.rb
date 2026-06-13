@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   # GET /posts
   def index
+    @secret_test = Rails.application.credentials.secret_test
     @posts = Post.all
   end
 

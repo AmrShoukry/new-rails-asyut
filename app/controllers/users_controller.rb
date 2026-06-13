@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.new(name: params[:user][:name], dob: params[:user][:dob], email: params[:user][:email], phone_number: params[:user][:phone_number], address: params[:user][:address])
+    @user = User.new(name: params[:user][:name], dob: params[:user][:dob], email_address: params[:user][:email_address], phone_number: params[:user][:phone_number], address: params[:user][:address], password: params[:user][:password])
     if @user.save
       redirect_to @user, notice: 'User was successfully created.'
     else
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   # PUT /users/:id
   def update
     @user = User.find(params[:id])
-    if @user.update(name: params[:user][:name], dob: params[:user][:dob], email: params[:user][:email], phone_number: params[:user][:phone_number], address: params[:user][:address])
+    if @user.update(name: params[:user][:name], dob: params[:user][:dob], email_address: params[:user][:email_address], phone_number: params[:user][:phone_number], address: params[:user][:address], password: params[:user][:password] || @user.password)
       redirect_to @user, notice: 'User was successfully updated.'
     else
       render :edit

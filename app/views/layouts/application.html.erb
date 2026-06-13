@@ -24,6 +24,18 @@
   </head>
 
   <body>
+  <% if Current.user %>
+  <span><%= "Logged in as #{Current.user.name}" %></span>
+  <%= button_to "Logout",
+      session_path,
+      method: :delete,
+      data: { turbo_confirm: "Are you sure you want to logout?" } %>
+
+      <%= link_to "users", users_path %>
+      <%= link_to "posts", posts_path %>
+<% else %>
+  <%= link_to "Login", new_session_path %>
+<% end %>
     <%= yield %>
   </body>
 </html>
