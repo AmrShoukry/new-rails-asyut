@@ -1,16 +1,20 @@
 class PostsController < ApplicationController
+  # GET /posts
   def index
     @posts = Post.all
   end
 
+  # GET /posts/:id
   def show
     @post = Post.find(params[:id])
   end
 
+  # GET /posts/new
   def new
     @post = Post.new
   end
 
+  # POST /posts
   def create
     @post = Post.new(title: params[:post][:title], content: params[:post][:content])
     if @post.save
@@ -20,10 +24,12 @@ class PostsController < ApplicationController
     end
   end
 
+  # GET /posts/:id/edit
   def edit
     @post = Post.find(params[:id])
   end
 
+  # PUT /posts/:id
   def update
     @post = Post.find(params[:id])
     if @post.update(title: params[:post][:title], content: params[:post][:content])
@@ -33,6 +39,7 @@ class PostsController < ApplicationController
     end
   end
 
+  # DELETE /posts/:id
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
